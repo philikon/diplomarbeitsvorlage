@@ -1,0 +1,219 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Diplomarbeitsvorlage von Hartmut Stöcker, Stand 25.01.2008
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Optionen für die Dokumentklasse scrbook aus dem KOMA-Skript:
+% - 12pt: Schriftgröße 12 pt
+% - oneside: Einseitiger Ausdruck
+% - BCOR8mm: links 8 mm zusätzlicher Rand fürs Binden
+% - DIV15: Festlegung der Seitenränder mit Zahlen zwischen 1 und 15
+% - headinclude: Festlegung der Seitenränder unter Einbeziehung der Kopfzeile
+% - liststotoc: Abbildungs- und Tabellenverzeichnis ins Inhaltsverzeichnis
+% - bibtotoc: Literaturverzeichnis ins Inhaltsverzeichnis aufnehmen
+% - tablecaptionabove: Tabellenbeschriftung über der Tabelle
+% - ngerman: Neu-deutsche Silbentrennung
+% - dvipdfm: Angabe des verwendeten Latex-Compilers (wichtig für hyperref)
+
+\documentclass[12pt,oneside,BCOR8mm,DIV15,headinclude,liststotoc,bibtotoc,tablecaptionabove,ngerman,dvipdfm]{scrbook}
+
+% Laden der benötigten Pakete
+\usepackage{graphicx}             % Grafiken einfügen
+\usepackage{subfigure}            % Teilbilder erzeugen
+\usepackage{amsmath}              % Mathematikbefehle
+\usepackage{amssymb}              % Unter anderem schöne Mengensymbole
+\usepackage[amssymb]{SIunits}     % Einheiten per Befehl einfügen
+\usepackage{multirow}             % Tabellenzeilen verbinden
+\usepackage{tabularx}             % Tabellen mit fester Breite
+
+% PDF-Dokumenteigenschaften setzen, PDF-Lesezeichen erzeugen, Verweise anklickbar machen
+\usepackage[pdftitle={Diplomarbeit}, pdfauthor={Vorname Name}, bookmarks=true, pdfborder={0 0 0}]{hyperref}
+% Verweise nicht auf Bildunterschrift, sondern auf Bild selbst
+\usepackage[all]{hypcap}
+
+% Bildunterschrift 0.8 cm einrücken, Größe small, Abbildung wird fett geschrieben
+\usepackage[margin=0.8cm, font=small, labelfont=bf]{caption}
+
+% Deutsche Zeichen- und Sprachpakete
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+
+% 1,5 facher Zeilenabstand
+\usepackage{setspace}
+\onehalfspacing
+
+% Formel-, Bilder- und Tabellennummer mit section.nummer
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+% Kopfzeile mit Kapitel- und Abschnittsname, Fußzeile mit Seitennummer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ \ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ \ #1}{}}
+\lhead{\nouppercase{\sl \leftmark}}
+\rhead{\nouppercase{\sl \rightmark}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Anfang des Dokuments
+
+\begin{document}
+
+% Seiten bis zum Beginn des eigentlichen Textes mit römischen Seitenzahlen in der Fußzeile
+\frontmatter
+\pagestyle{plain}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titelseite
+
+\thispagestyle{empty}
+
+\vspace{-5em}
+\begin{flushleft}\includegraphics[angle=0,width=60mm]{Bilder/TU_Logo_sw.eps}\par\end{flushleft}
+\vspace{-3em}
+\begin{center}\rule{\textwidth}{0.1ex}\par\end{center}
+\vspace{-4em}
+\begin{center}\rule{\textwidth}{0.1ex}\par\end{center}
+
+\vfill
+
+\begin{center}\textbf{\Huge Hier kommt}\par\end{center}
+\begin{center}\textbf{\Huge der Titel}\par\end{center}
+\begin{center}\textbf{\Huge hin}\par\end{center}
+
+\vfill
+
+\begin{center}
+{\large Diplomarbeit}\\
+{\large zur Erlangung des wissenschaftlichen Grades}\\
+{\large Diplom-Physiker}\par
+\end{center}
+
+\begin{center}vorgelegt von\par\end{center}
+\begin{center}{\large Vorname Name}\\geboren am xx.yy.zzzz in Ort\par\end{center}
+
+\vspace{13mm}
+
+\begin{center}
+{\large Institut für ...}\\
+{\large der Technischen Universität Dresden}\\
+{\large 200x}\par
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Gutachter-Seite
+
+\newpage
+\thispagestyle{empty}
+
+\ \vfill
+
+\begin{tabular}{l}
+Eingereicht am xx.yy.zzzz \\
+\end{tabular}
+
+\vspace{1cm}
+
+\begin{tabular}{ll}
+1. Gutachter: & ...\\
+2. Gutachter: & ...\\
+\end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Zusammenfassung/Abstract-Seite
+
+\newpage
+\thispagestyle{empty}
+
+\section*{\centering{Kurzdarstellung}}
+
+Abstract auf Deutsch...
+
+\vspace{3mm}
+
+\section*{\centering{Abstract}}
+
+Abstract auf Englisch...
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inhaltsverzeichnis, Abbildungsverzeichnis, Tabellenverzeichnis
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Haupttext
+
+\mainmatter
+\pagestyle{fancy}               % Oben definierte Kopf- und Fußzeile verwenden
+
+\include{Kapitel/Einleitung}    % Dateien ohne Endung .tex einfügen!
+\include{Kapitel/Grundlagen}
+\include{Kapitel/Messaufbau}
+\include{Kapitel/Messwerte}
+\include{Kapitel/Diskussion}
+\include{Kapitel/Zusammenfassung}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Anhang
+
+\appendix
+
+\include{Kapitel/Anhang}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Literaturverzeichnis
+
+\backmatter
+\newpage
+\pagestyle{plain}             % nur Nummerierung in der Fußzeile
+
+\bibliographystyle{alphadin}  % Zitierstil: alphadin = [Nam88]
+\bibliography{Literatur}      % BibTeX-Datei name.bib ohne .bib hier einfügen
+%\nocite{*}                    % Listet alle Einträge der Datei auf, wenn aktiv
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Danksagung
+
+\newpage
+\thispagestyle{empty}
+
+\section*{\centering{Danksagung}}\bigskip
+
+{\parindent 0mm
+
+Allgemeine Dankesworte...\bigskip
+
+Spezielle Dankesworte...\bigskip
+
+Weitere Dankesworte...
+
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Erklärung
+
+\newpage
+\thispagestyle{empty}
+
+\section*{\centering{Erklärung}}\bigskip
+
+Hiermit versichere ich, dass ich die vorliegende Arbeit ohne unzulässige Hilfe Dritter und ohne Benutzung anderer als der angegebenen Hilfsmittel angefertigt habe. Die aus fremden Quellen direkt oder indirekt übernommenen Gedanken sind als solche kenntlich gemacht. Die Arbeit wurde bisher weder im Inland noch im Ausland in gleicher oder ähnlicher Form einer anderen Prüfungsbehörde vorgelegt.\\[2.3cm]
+Vorname Name\\
+Dresden, Monat 200x
+
+
+\end{document}
