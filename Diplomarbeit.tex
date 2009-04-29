@@ -6,9 +6,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Optionen für die Dokumentklasse scrbook aus dem KOMA-Skript:
 % - 12pt: Schriftgröße 12 pt
-% - oneside: Einseitiger Ausdruck
-% - BCOR8mm: links 8 mm zusätzlicher Rand fürs Binden
-% - DIV15: Festlegung der Seitenränder mit Zahlen zwischen 1 und 15
+% - twoside: Doppelseitiger Ausdruck
+% - BCOR20mm: Bindekorrektur 20mm
+% - DIV18: äußerer Rand ca. 20mm (damit innerer Rand + BCOR = 30mm)
 % - headinclude: Festlegung der Seitenränder unter Einbeziehung der Kopfzeile
 % - liststotoc: Abbildungs- und Tabellenverzeichnis ins Inhaltsverzeichnis
 % - bibtotoc: Literaturverzeichnis ins Inhaltsverzeichnis aufnehmen
@@ -16,7 +16,7 @@
 % - ngerman: Neu-deutsche Silbentrennung
 % - dvipdfm: Angabe des verwendeten Latex-Compilers (wichtig für hyperref)
 
-\documentclass[12pt,oneside,BCOR8mm,DIV15,headinclude,liststotoc,bibtotoc,tablecaptionabove,ngerman,dvipdfm]{scrbook}
+\documentclass[12pt,twoside,BCOR20mm,DIV18,headinclude,headsepline,liststotoc,bibtotoc,tablecaptionabove,ngerman,dvipdfm]{scrbook}
 
 % Laden der benötigten Pakete
 \usepackage[dvipdfm]{graphicx}    % Grafiken einfügen
@@ -50,13 +50,11 @@
 \numberwithin{figure}{section}
 \numberwithin{table}{section}
 
-% Kopfzeile mit Kapitel- und Abschnittsname, Fußzeile mit Seitennummer
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter\ \ #1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ \ #1}{}}
-\lhead{\nouppercase{\sl \leftmark}}
-\rhead{\nouppercase{\sl \rightmark}}
+% Kopfzeile mit Kapitelname auf der linken, Abschnittsname auf der
+% rechten Seite.  Fußzeile mit Seitennummer.
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\automark[section]{chapter}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -156,7 +154,7 @@ Abstract auf Englisch...
 % Haupttext
 
 \mainmatter
-\pagestyle{fancy}               % Oben definierte Kopf- und Fußzeile verwenden
+\pagestyle{scrheadings}         % Oben definierte Kopf- und Fußzeile verwenden
 
 \include{Kapitel/Einleitung}    % Dateien ohne Endung .tex einfügen!
 \include{Kapitel/Grundlagen}
