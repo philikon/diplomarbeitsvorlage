@@ -1,6 +1,6 @@
 all: Diplomarbeit.pdf
 
-Diplomarbeit.aux: Diplomarbeit.tex Kapitel/*.tex
+Diplomarbeit.aux: Diplomarbeit.tex Kapitel/*.tex Bilder/*
 	latex Diplomarbeit.tex
 
 Diplomarbeit.dvi: Diplomarbeit.aux
