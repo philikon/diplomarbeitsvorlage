@@ -21,7 +21,9 @@ Unterschiede zur FSR-Vorlage
 * Anpassung der Silbentrennungsparameter
 
 * Nummerierung von Tabelle, Abbildungen und Gleichungen nach dem
-  Schema ``kapitel.lfd-nr`` statt ``kapitel.abschnitt.lfd-nr``.
+  Schema ``kapitel.lfd-nr`` statt ``kapitel.abschnitt.lfd-nr``
+
+* Beispiele zum Zeichnen von Feynman-Graphen
 
 
 dvipdfm als LaTeX-Treiber
@@ -53,3 +55,22 @@ Um die verschiedenen Arbeitsschritte beim Generieren des PDFs zu
 automatisieren, liegt der Vorlage ein Makefile für GNU make bei.
 Damit reicht ein Aufruf von ``make`` auf, um LaTeX, BibTeX und dvipdfm
 in der richtigen Reihenfolge aufzurufen.
+
+
+Feynman-Diagramme mit feynMF
+----------------------------
+
+Das Paket feynMF erlaubt es, Feynman-Diagramme in LaTeX zu zeichnen.
+Es generiert wahlweise Metafont- oder MetaPost-Dateien, die ihrerseits
+wiederum ins LaTeX-Dokument eingebunden werden.  Dieser Vorlage liegt
+``feynmp.sty`` bei, das auf MetaPost aufbaut.  Dazu gehört
+``feynmp.mp``, worin sämtliche zu feynMF gehörenden MetaPost-Routinen
+definiert sind.  Es handelt sich dabei um von mir leicht modifizierte
+Versionen.  Mit diesen Modifikationen ist es möglich,
+Vertexdekorationen mit beliebigen Liniendicken zu malen.  Das erlaubt
+z.B. das Malen eines dicken Kreuzes an einem Vertex, um einen
+Counterterm zu kennzeichen.
+
+Das Makefile ist bereits für die MetaPost-Dateien angepasst.  Falls
+Feynman-Diagramme nicht benötigt werden, können die entsprechenden
+Zeilen einfach entfernt werden.

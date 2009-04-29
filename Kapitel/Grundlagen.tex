@@ -2,7 +2,114 @@
 
 \section{Allgemeine Grundlagen}
 
-Allgemeine Grundlage...
+Hier ein Feynman-Diagramm zu $(g-2)_\mu$ im MSSM:
+
+\begin{center}
+\begin{fmffile}{Feynman/QED+Chargino}
+  \fmfset{thin}{.5pt}
+  \fmfset{wiggly_len}{3mm}
+  \fmfset{dash_len}{2.5mm}
+  \fmfset{dot_size}{1thick}
+  \fmfset{arrow_len}{2.5mm}
+
+\begin{fmfgraph*}(80,60)
+  \fmfkeep{qedcha-1a}
+  \fmfleft{gamma}
+  \fmfright{in,out}
+  \fmf{plain}{out,va,v1,vb,vertex,vc,v2,vd,in}
+  \fmf{photon}{vertex,gamma}
+  \fmf{photon,tension=0}{v1,v2}
+  \fmffreeze
+  \fmf{dashes,right}{va,vb}
+  \fmfdot{vertex,v1,v2,va,vb}
+\end{fmfgraph*}
+\end{fmffile}
+\end{center}
+
+Falls Feynman-Diagramme in Formel vorkommen sollen, empfiehlt es sich,
+sie vorher in einer {\ttfamily sbox} zu definieren und dann später mit
+{\ttfamily $\backslash$fmfreuse} aufzurufen:
+
+% Use \sbox to prevent the diagrams from being displayed. We can now
+% refer to them indidivually by their id (\fmfkeep)
+\newsavebox{\charginodiagrams}
+\sbox{\charginodiagrams}{
+\begin{fmffile}{Feynman/Nichtplanar}
+  \fmfset{thin}{.5pt}
+  \fmfset{wiggly_len}{3mm}
+  \fmfset{dash_len}{2.5mm}
+  \fmfset{dot_size}{1thick}
+  \fmfset{arrow_len}{2.5mm}
+
+\begin{fmfgraph*}(80,60)
+  \fmfkeep{qedcha-4a}
+  \fmfleft{gamma}
+  \fmfright{in,out}
+  \fmf{plain}{out,va,v1,vertex,v2,vb,in}
+  \fmf{photon}{vertex,gamma}
+  \fmffreeze
+  \fmf{dashes}{v1,vb}
+  \fmf{photon}{v2,va}
+  \fmfdot{vertex,v1,v2,va,vb}
+\end{fmfgraph*}
+
+\begin{fmfgraph*}(80,60)
+  \fmfkeep{qedcha-4b}
+  \fmfleft{gamma}
+  \fmfright{in,out}
+  \fmf{plain}{out,va,v1,vertex,v2,vb,in}
+  \fmf{photon}{vertex,gamma}
+  \fmffreeze
+  \fmf{dashes}{v2,va}
+  \fmf{photon}{v1,vb}
+  \fmfdot{vertex,v1,v2,va,vb}
+\end{fmfgraph*}
+\end{fmffile}
+}
+
+\begin{equation}
+  \fmfreuse{qedcha-4a} + \fmfreuse{qedcha-4b} = \text{endlich}
+\end{equation}
+
+Schöner sieht's vertikal zentriert aus.  Das geht mit {\ttfamily
+  $\backslash$vcenter}, wenn man das Diagramm in eine {\ttfamily
+  $\backslash$hbox} verpackt:
+
+\newcommand{\fmfvcenter}[1]{\vcenter{\hbox{\fmfreuse{#1}}}}
+
+\begin{equation}
+  \fmfvcenter{qedcha-4a} + \fmfvcenter{qedcha-4b} = \text{endlich}
+\end{equation}
+
+Die modifizierte feynMF-Version erlaubt auch das Malen hübscher
+Countertermdiagramme mit dem neuen Befehl {\ttfamily $\backslash$fmfct}:
+
+\newsavebox{\qedcounterterms}
+\sbox{\qedcounterterms}{
+\begin{fmffile}{Feynman/Counterterme}
+  \fmfset{thin}{.5pt}
+  \fmfset{wiggly_len}{3mm}
+  \fmfset{dash_len}{2.5mm}
+  \fmfset{dot_size}{1thick}
+  \fmfset{arrow_len}{2.5mm}
+
+\begin{fmfgraph*}(80,60)
+  \fmfkeep{qedct-1a}
+  \fmfleft{gamma}
+  \fmfright{in,out}
+  \fmf{plain}{out,v1,va,vertex,vb,v2,in}
+  \fmf{photon}{vertex,gamma}
+  \fmf{photon,tension=0}{v1,v2}
+  \fmfdot{vertex,v2}
+  \fmfct{v1}
+\end{fmfgraph*}
+\end{fmffile}
+}
+
+\begin{equation}
+  \fmfvcenter{qedcha-1a} + \fmfvcenter{qedct-1a} = \text{endlich}
+\end{equation}
+
 
 \subsection{Erster Unterabschnitt}
 
