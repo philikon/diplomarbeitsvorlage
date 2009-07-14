@@ -9,8 +9,8 @@ MPFILES := $(foreach file, $(basename $(wildcard Feynman/*mp)), $(file).1)
 Feynman/feynmp.1:
 	true
 
-Feynman/%.1: feynman/%.mp
-	cd feynman && mpost $*
+Feynman/%.1: Feynman/%.mp
+	cd Feynman && mpost $*
 
 ### Ende feynMF-spezifische Regeln
 
