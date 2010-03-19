@@ -731,6 +731,10 @@ enddef;
 style_def dbl_wiggly expr p =
   draw_double (wiggly p);
 enddef;
+style_def gluino expr p =
+  cdraw (wiggly p);
+  cdraw p;
+enddef;
 style_def curly expr p =
   cdraw (curly p);
 enddef;
