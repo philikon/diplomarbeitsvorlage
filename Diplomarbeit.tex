@@ -14,12 +14,11 @@
 % - bibtotoc: Literaturverzeichnis ins Inhaltsverzeichnis aufnehmen
 % - tablecaptionabove: Tabellenbeschriftung über der Tabelle
 % - ngerman: Neu-deutsche Silbentrennung
-% - dvipdfm: Angabe des verwendeten Latex-Compilers (wichtig für hyperref)
 
-\documentclass[12pt,twoside,BCOR20mm,DIV18,headinclude,headsepline,liststotoc,bibtotoc,tablecaptionabove,ngerman,dvipdfm]{scrbook}
+\documentclass[12pt,twoside,BCOR20mm,DIV18,headinclude,headsepline,liststotoc,bibtotoc,tablecaptionabove,ngerman]{scrbook}
 
 % Laden der benötigten Pakete
-\usepackage[dvipdfm]{graphicx}    % Grafiken einfügen
+\usepackage{graphicx}             % Grafiken einfügen
 \usepackage{subfigure}            % Teilbilder erzeugen
 \usepackage{amsmath}              % Mathematikbefehle
 \usepackage{amssymb}              % Unter anderem schöne Mengensymbole
@@ -77,6 +76,7 @@
 
 % Feynman-Diagramme mit LaTeX und MetaPost zeichnen.
 \usepackage{feynmp}
+\DeclareGraphicsRule{*}{mps}{*}{}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
