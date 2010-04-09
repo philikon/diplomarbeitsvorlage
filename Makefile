@@ -20,3 +20,7 @@ Diplomarbeit.aux: Diplomarbeit.tex Kapitel/*.tex Bilder/* $(MPFILES)
 Diplomarbeit.pdf: Diplomarbeit.aux
 	bibtex Diplomarbeit
 	pdflatex Diplomarbeit.tex
+
+clean:
+	rm -f *.aux *.log *.out *.dvi *.toc *.lof *.lot *.bbl *.blg
+	rm -f Kapitel/*.aux
