@@ -15,11 +15,8 @@ Feynman/%.1: Feynman/%.mp
 ### Ende feynMF-spezifische Regeln
 
 Diplomarbeit.aux: Diplomarbeit.tex Kapitel/*.tex Bilder/* $(MPFILES)
-	latex Diplomarbeit.tex
+	pdflatex Diplomarbeit.tex
 
-Diplomarbeit.dvi: Diplomarbeit.aux
+Diplomarbeit.pdf: Diplomarbeit.aux
 	bibtex Diplomarbeit
-	latex Diplomarbeit.tex
-
-Diplomarbeit.pdf: Diplomarbeit.dvi
-	dvipdfm Diplomarbeit.dvi
+	pdflatex Diplomarbeit.tex
